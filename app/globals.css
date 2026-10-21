@@ -4,3 +4,4 @@
 .verified-submitter{font-size:11px;color:#729281;margin:-10px 0 23px;overflow-wrap:anywhere}.workspace-status{padding:0 22px}.mobile-progress>.draft-button{float:right;padding:0;line-height:1.6}.summary .badge{margin-top:8px}.field textarea{min-height:90px}
 .form-content{border:0;padding:0;margin:0;min-width:0}.reference{width:min(100%,360px)}.reference strong{font-size:12px;letter-spacing:.5px;overflow-wrap:anywhere}.submission-note{margin-bottom:5px}
 .announcement-visual{margin:0;display:flex;justify-content:center;align-items:center;min-width:0}.announcement-visual img{display:block;width:auto;height:auto;max-width:100%;max-height:590px;border-radius:14px}.welcome>.hero-copy{align-self:center}@media(max-width:700px){.announcement-visual img{width:100%;max-width:430px;max-height:none;border-radius:12px}.welcome>.hero-copy{align-self:start}}
+.welcome{padding-bottom:45px}
