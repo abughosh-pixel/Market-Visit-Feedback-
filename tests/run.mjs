@@ -1,0 +1,4 @@
+import ts from 'typescript';import fs from 'node:fs';
+fs.mkdirSync('work/qa',{recursive:true});
+for(const [source,name] of [['lib/access.ts','access'],['lib/security.ts','security'],['lib/exports.ts','exports'],['app/api/admin/route.ts','admin'],['app/api/visits/route.ts','visits'],['app/api/photos/[...key]/route.ts','photos'],['app/api/export/route.ts','export']]){let code=fs.readFileSync(source,'utf8').replaceAll("'cloudflare:workers'","'../../tests/storage.mjs'");for(const name of ['access','security','exports']){code=code.replaceAll(`'../../../lib/${name}'`,`'./${name}.mjs'`).replaceAll(`'../../../../lib/${name}'`,`'./${name}.mjs'`).replaceAll(`'./${name}'`,`'./${name}.mjs'`)}fs.writeFileSync('work/qa/'+name+'.mjs',ts.transpileModule(code,{compilerOptions:{target:ts.ScriptTarget.ES2022,module:ts.ModuleKind.ES2022}}).outputText)}
+await import('./verify.mjs');
