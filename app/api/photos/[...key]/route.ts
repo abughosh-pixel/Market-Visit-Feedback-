@@ -1,0 +1,3 @@
+import {env} from 'cloudflare:workers';
+import {isAdmin,fail} from '../../../../lib/security';
+export async function GET(request:Request,{params}:{params:Promise<{key:string[]}>}) {if(!await isAdmin(request))return fail('Sign in to view visit photos.',401);const {key}=await params;const path=key.join('/');if(!/^visits\/[a-f0-9-]+\/[a-z]+-[a-f0-9-]+\.(jpg|png|webp)$/.test(path))return fail('Photo not found.',404);const photo=await env.BUCKET!.get(path);if(!photo)return fail('Photo not found.',404);return new Response(photo.body,{headers:{'Content-Type':photo.httpMetadata?.contentType||'application/octet-stream','Cache-Control':'private, no-store','X-Content-Type-Options':'nosniff','Content-Security-Policy':"default-src 'none'; sandbox"}});}
